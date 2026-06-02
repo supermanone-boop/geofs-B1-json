@@ -1,421 +1,191 @@
 {
-  "id": "B1B",
-  "name": "Rockwell B-1B Lancer",
-  "scale": 1,
-  "mass": 86000,
-  "tensorFactor": 0.02,
-  "dragFactor": 1.55,
+"name": "U2（いいやろ）",
 
-  "com": [0, -12, 0],
+"mass": 10500,
+"tensorFactor": [0.08, 0.05, 0.03],
+"dragFactor": 0.35,
 
-  "gearTravelTime": 8,
-  "flapsTravelTime": 7,
-  "flapsSteps": 4,
-  "airbrakesTravelTime": 1.2,
-  "brakeDamping": 7,
+"gearTravelTime": 1,
+"flapsTravelTime": 1,
+"airbrakesTravelTime": 1,
 
-  "zeroThrustAltitude": 65000,
-  "reverse": true,
+"zeroThrustAltitude": 85000,
 
-  "minRPM": 900,
-  "maxRPM": 11000,
-  "driveRatio": 0.32,
-  "engineInertia": 2.8,
-  "startupTime": 18,
+"minRPM": 1000,
+"maxRPM": 10000,
+"driveRatio": 0.25,
+"engineInertia": 1,
+"startupTime": 20,
 
-  "minimumSpeed": 160,
-  "autopilot": true,
+"startAltitude": 2,
+"startTilt": 0,
 
-  "parts": [
+"minimumSpeed": 120,
+
+"parts": [
+
     {
-      "name": "body",
-      "type": "frame",
-      "model": "body.glb",
-      "collisionPoints": [
-        [0, 0, -2.5]
-      ]
-    },
+        "name": "root",
+        "type": "root",
 
-    
-    {
-      "name": "leftWing",
-      "parent": "body",
-      "type": "airfoil",
-      "model": "leftWing.glb",
-      "position": [-10.5, -2, 0],
-      "liftFactor": 42,
-      "dragFactor": 0.6,
-      "forceDirection": "Z",
-      "points": {
-        "forceSourcePoint": [-12, -2, 0]
-      },
-      "animations": [
-        {
-          "type": "rotate",
-          "axis": "Y",
-          "value": "speed",
-          "ratio": -0.015,
-          "min": 200,
-          "max": 600
+        "model": "u-2_dragonlady_-_free.glb",
+
+        "forceZup": true,
+
+        "points": {
+            "centerOfMass": [0, 0, 0]
         }
-      ]
     },
 
     {
-      "name": "rightWing",
-      "parent": "body",
-      "type": "airfoil",
-      "model": "rightWing.glb",
-      "position": [10.5, -2, 0],
-      "liftFactor": 42,
-      "dragFactor": 0.6,
-      "forceDirection": "Z",
-      "points": {
-        "forceSourcePoint": [12, -2, 0]
-      },
-      "animations": [
-        {
-          "type": "rotate",
-          "axis": "Y",
-          "value": "speed",
-          "ratio": 0.015,
-          "min": 200,
-          "max": 600
+        "name": "body",
+        "type": "airfoil",
+
+        "area": 10,
+        "forceDirection": "X",
+
+        "points": {
+            "forceSourcePoint": [0, 0, 0]
+        },
+
+        "collisionPoints": [
+            [0, 9, 0],
+            [0, -9, 0],
+            [-15, 0, 0],
+            [15, 0, 0],
+            [0, 0, 2],
+            [0, 0, -1]
+        ]
+    },
+
+    {
+        "name": "leftWing",
+        "type": "airfoil",
+
+        "area": 55,
+        "forceDirection": "Z",
+
+        "rotation": [0, 3, 0],
+
+        "points": {
+            "forceSourcePoint": [-8, 0, 0]
+        },
+
+        "stalls": true,
+        "stallIncidence": 10,
+        "zeroLiftIncidence": 18
+    },
+
+    {
+        "name": "rightWing",
+        "type": "airfoil",
+
+        "area": 55,
+        "forceDirection": "Z",
+
+        "rotation": [0, 0, 0],
+
+        "points": {
+            "forceSourcePoint": [8, 0, 0]
+        },
+
+        "stalls": true,
+        "stallIncidence": 10,
+        "zeroLiftIncidence": 18
+    },
+
+    {
+        "name": "horizontalTail",
+        "type": "airfoil",
+
+        "area": 8,
+        "forceDirection": "Z",
+
+        "points": {
+            "forceSourcePoint": [0, -7, 1]
         }
-      ]
     },
 
-    
     {
-      "name": "leftElevator",
-      "parent": "body",
-      "type": "airfoil",
-      "model": "leftElevator.glb",
-      "position": [-2.8, -23.5, 1.2],
-      "liftFactor": 28,
-      "dragFactor": 0,
-      "forceDirection": "Z",
-      "points": {
-        "forceSourcePoint": [-6, -5, 0]
-      },
-      "animations": [
-        {
-          "type": "rotate",
-          "axis": "X",
-          "value": "pitch",
-          "ratio": 28
+        "name": "verticalTail",
+        "type": "airfoil",
+
+        "area": 4,
+        "forceDirection": "X",
+
+        "points": {
+            "forceSourcePoint": [0, -8, 2]
         }
-      ]
     },
 
     {
-      "name": "rightElevator",
-      "parent": "body",
-      "type": "airfoil",
-      "model": "rightElevator.glb",
-      "position": [2.8, -23.5, 1.2],
-      "liftFactor": 28,
-      "dragFactor": 0,
-      "forceDirection": "Z",
-      "points": {
-        "forceSourcePoint": [6, -5, 0]
-      },
-      "animations": [
-        {
-          "type": "rotate",
-          "axis": "X",
-          "value": "pitch",
-          "ratio": 28
+        "name": "engine",
+        "type": "engine",
+
+        "thrust": 85000,
+        "forceDirection": "Y",
+
+        "points": {
+            "forceSourcePoint": [0, -4, 0]
         }
-      ]
-    },
-
-  
-
-    {
-      "name": "rudder",
-      "parent": "body",
-      "type": "airfoil",
-      "model": "rudder.glb",
-      "position": [0, -22.5, 4.8],
-      "area": 6,
-      "forceDirection": "X",
-      "points": {
-        "forceSourcePoint": [0, 2, 5]
-      },
-      "animations": [
-        {
-          "type": "rotate",
-          "axis": "Z",
-          "value": "yaw",
-          "ratio": -25
-        }
-      ]
-    },
-
-    
-    {
-      "name": "engine1",
-      "type": "engine",
-      "thrust": 78000,
-      "reverseThrust": 42000,
-      "forceDirection": "Y",
-      "points": {
-        "forceSourcePoint": [-6.5, 2.2, -1.2]
-      }
-    },
-    {
-      "name": "engine2",
-      "type": "engine",
-      "thrust": 78000,
-      "reverseThrust": 42000,
-      "forceDirection": "Y",
-      "points": {
-        "forceSourcePoint": [-3.2, 2.2, -1.2]
-      }
-    },
-    {
-      "name": "engine3",
-      "type": "engine",
-      "thrust": 78000,
-      "reverseThrust": 42000,
-      "forceDirection": "Y",
-      "points": {
-        "forceSourcePoint": [3.2, 2.2, -1.2]
-      }
-    },
-    {
-      "name": "engine4",
-      "type": "engine",
-      "thrust": 78000,
-      "reverseThrust": 42000,
-      "forceDirection": "Y",
-      "points": {
-        "forceSourcePoint": [6.5, 2.2, -1.2]
-      }
     }
-    ,
+],
 
-    
-    {
-      "name": "leftGear",
-      "parent": "body",
-      "type": "wheel",
-      "model": "leftGear.glb",
-      "position": [-3.8, -4.2, -1.1],
-      "collisionPoints": [
-        [0, 0, -2.8]
-      ],
-      "animations": [
-        {
-          "type": "rotate",
-          "axis": "Y",
-          "value": "gearPosition",
-          "ratio": 95
-        },
-        {
-          "type": "hide",
-          "value": "gearPosition",
-          "threshold": 0.95
-        }
-      ],
-      "suspension": {
-        "stiffness": 45,
-        "damping": 6
-      }
-    },
+"contactProperties": {
 
-    
-
-    {
-      "name": "rightGear",
-      "parent": "body",
-      "type": "wheel",
-      "model": "rightGear.glb",
-      "position": [3.8, -4.2, -1.1],
-      "collisionPoints": [
-        [0, 0, -2.8]
-      ],
-      "animations": [
-        {
-          "type": "rotate",
-          "axis": "Y",
-          "value": "gearPosition",
-          "ratio": -95
-        },
-        {
-          "type": "hide",
-          "value": "gearPosition",
-          "threshold": 0.95
-        }
-      ],
-      "suspension": {
-        "stiffness": 45,
-        "damping": 6
-      }
-    },
-
-    
-
-    {
-      "name": "frontGear",
-      "parent": "body",
-      "type": "wheel",
-      "model": "frontGear.glb",
-      "position": [0, 14.8, -1.2],
-      "collisionPoints": [
-        [0, 0, -2.6]
-      ],
-      "animations": [
-        {
-          "type": "rotate",
-          "axis": "Z",
-          "value": "yaw",
-          "ratio": 45
-        },
-        {
-          "type": "rotate",
-          "frame": "parent",
-          "axis": "X",
-          "value": "gearPosition",
-          "ratio": -105,
-          "delay": -0.4
-        },
-        {
-          "type": "hide",
-          "value": "gearPosition",
-          "threshold": 0.6
-        }
-      ],
-      "suspension": {
-        "stiffness": 30,
-        "damping": 6
-      }
-    },
-
-    
-    {
-      "name": "gearDrag",
-      "type": "airfoil",
-      "liftFactor": 0,
-      "dragFactor": 6,
-      "forceDirection": "Z",
-      "points": {
-        "forceSourcePoint": [0, 0, 0]
-      },
-      "animations": [
-        {
-          "type": "rotate",
-          "frame": "parent",
-          "axis": "X",
-          "value": "gearPosition",
-          "ratio": -90
-        }
-      ],
-      "rotation": [90, 0, 0]
-    }
-
-  ],
-
-  
-  "contactProperties": {
     "wheel": {
-      "frictionCoef": 6,
-      "dynamicFriction": 0.015,
-      "rollingFriction": 0.00015,
-      "lockSpeed": 0.01,
-      "damping": 1
+        "frictionCoef": 5,
+        "dynamicFriction": 0.05,
+        "rollingFriction": 0.00001,
+        "lockSpeed": 0.008,
+        "damping": 1
     },
+
     "frame": {
-      "frictionCoef": 1.5,
-      "dynamicFriction": 0.02,
-      "damping": 1
+        "frictionCoef": 2,
+        "dynamicFriction": 0.01,
+        "damping": 1
     },
+
     "airfoil": {
-      "frictionCoef": 1.2,
-      "dynamicFriction": 0.01,
-      "damping": 1
+        "frictionCoef": 2,
+        "dynamicFriction": 0.01,
+        "damping": 1
     }
-  },
+},
 
-  /* ===== サウンド ===== */
+"soundSet": "player",
 
-  "soundSet": "player",
-  "sounds": [
+"sounds": [
     {
-      "id": "rpm1",
-      "file": "sounds/jetliner/rpm1.mp3",
-      "effects": {
-        "volume": {
-          "value": "rpm",
-          "ramp": [800, 1500, 3000, 4500]
-        },
-        "pitch": {
-          "value": "rpm",
-          "ramp": [800, 20000, 20000, 20000],
-          "ratio": 1,
-          "offset": 1
-        }
-      }
+        "id": "rpm0",
+        "file": "sounds/rafale/rpm0.ogg"
     },
     {
-      "id": "rpm2",
-      "file": "sounds/jetliner/rpm2.mp3",
-      "effects": {
-        "volume": {
-          "value": "rpm",
-          "ramp": [3000, 5000, 8000, 11000]
-        }
-      }
+        "id": "rpm1",
+        "file": "sounds/rafale/rpm1.ogg"
     },
     {
-      "id": "rolling",
-      "file": "sounds/tyres/rolling1.mp3",
-      "effects": {
-        "volume": {
-          "value": "rollingSpeed",
-          "ramp": [0, 40, 1000, 1000]
-        }
-      }
-    },
-    {
-      "id": "touch",
-      "file": "sounds/tyres/touch1.mp3",
-      "effects": {
-        "start": {
-          "value": "maxAngularVRatio",
-          "gt": 280
-        }
-      }
+        "id": "rpm2",
+        "file": "sounds/rafale/rpm4.ogg"
     }
-  ],
+],
 
-  /* ===== カメラ ===== */
+"cameras": {
 
-  "cameras": {
     "follow": {
-      "distance": 85
+        "distance": 35
     },
+
     "cockpit": {
-      "position": [0, 22.5, 2.1],
-      "orientation": [0, -8, 0]
-    },
-    "Bomb bay": {
-      "position": [0, -2, -0.8],
-      "orientation": [180, 0, 0]
-    },
-    "Left wing": {
-      "position": [-3, 6, 1.2],
-      "orientation": [-140, -5, 0]
-    },
-    "Right wing": {
-      "position": [3, 6, 1.2],
-      "orientation": [140, -5, 0]
+        "position": [0, 5.2, 1.4],
+        "orientation": [0, -20, 0],
+        "FOV": 2
     }
-  },
+},
 
-  /* ===== 影 ===== */
+"cockpitModel": false,
 
-  "shadowURL": "shadow.png",
-  "shadowBox": [42, 30]
+"shadowBox": [12, 12]
+
 }
